@@ -1,40 +1,45 @@
-from setuptools import setup
+#!/usr/bin/python
 
-# Load __version__ without importing it (avoids race condition with build)
-exec(open('terseparse/version.py').read())
+# Copyright (c) 2023, Sparkmeter Inc
+# All rights reserved.
+#
 
-test_deps = [
-    'pytest'
-]
+"""Setup script for IntelHex."""
 
-extras = {
-    'test': test_deps
-}
+import sys, glob
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+from distutils.core import Command
 
-setup(name='terseparse',
-      description='A minimal boilerplate, composeable wrapper for argument parsing',
-      packages=['terseparse'],
+import terseparse, terseparse.version
+
+LONG_DESCRIPTION = open('README.rst', 'r').read()
+
+METADATA = dict(
+      name='terseparse',
       version=__version__,
-      url='https://github.com/jthacker/terseparse',
-      download_url='https://github.com/jthacker/terseparse/archive/v{}.tar.gz'.format(__version__),
-      author='jthacker',
+      scripts=glob.glob('scripts/*'),
+      packages=['terseparse'],
+      author='Jon Thacker',
       author_email='thacker.jon@gmail.com',
-      keywords=['argument', 'parsing'],
-      classifiers=[],
+      maintainer='Daniel Berliner',
+      maintainer_email='dan.berliner@sparkmeter.io',
+      url='https://github.com/jthacker/terseparse',
+      description='A minimal boilerplate, composeable wrapper for argument parsing',
+      long_description=LONG_DESCRIPTION,
+      keywords='Argument Parsing',
+      license='MIT',
+      classifiers = [],
       install_requires=[
           'six >= 1.16'
           ],
-      tests_require=test_deps,
-      setup_requires=[
-          'pytest-runner'
-          ],
-      extras_require=extras,
-      long_description="""
-How to Install
---------------
+)
 
-.. code:: bash
+def main():
+    metadata = METADATA.copy()
+    return setup(**metadata)
 
-    pip install terseparse
-
-""")
+if __name__ == '__main__':
+    main()
