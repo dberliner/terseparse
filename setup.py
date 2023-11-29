@@ -13,13 +13,13 @@ except ImportError:
     from distutils.core import setup
 from distutils.core import Command
 
-import terseparse, terseparse.version
+import terseparse, terseparse.__version__
 
 LONG_DESCRIPTION = "This is a long description placeholder"
 
 METADATA = dict(
       name='terseparse',
-      version=__version__,
+      version=terseparse.__version__.version_str,
       scripts=glob.glob('scripts/*'),
       packages=['terseparse'],
       author='Jon Thacker',
