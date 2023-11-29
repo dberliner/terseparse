@@ -15,7 +15,7 @@ from distutils.core import Command
 
 import terseparse, terseparse.version
 
-LONG_DESCRIPTION = open('README.rst', 'r').read()
+LONG_DESCRIPTION = "This is a long description placeholder"
 
 METADATA = dict(
       name='terseparse',
